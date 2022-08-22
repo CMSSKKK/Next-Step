@@ -2,12 +2,10 @@ plugins {
     id 'java'
 }
 
-ext {
-    springVersion = '5.3.20'
-    tomcatVersion = '8.5.79'
-}
 
 version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -29,7 +27,7 @@ dependencies {
 
     // servlet
     // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
-    compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
+    implementation 'javax.servlet:javax.servlet-api:4.0.1'
     // https://mvnrepository.com/artifact/javax.servlet/jstl
     implementation 'javax.servlet:jstl:1.2'
 
@@ -54,12 +52,19 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
 
     // EMBED TOMCAT 관련 설정
-    // tomcat-embed-core
-    implementation 'org.apache.tomcat.embed:tomcat-embed-core:8.0.15'
+    // https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-core
+    implementation 'org.apache.tomcat.embed:tomcat-embed-core:8.5.63'
+
     // https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-logging-juli
-    implementation 'org.apache.tomcat.embed:tomcat-embed-logging-juli:8.0.15'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-logging-juli:8.5.2'
     // https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
-    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:8.0.15'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:8.5.63'
+
+}
+
+sourceSets {
+    main.java.srcDirs=['src/main/java']
+    main.resources.srcDirs=['src/main/resources', 'src/main/resources-' + target]
 }
 
 test {
